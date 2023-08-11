@@ -1,0 +1,27 @@
+html{
+    color: blue;
+}
+
+.main {
+    
+    height: 100%;
+}
+
+#Job{
+    height: 50px;
+    width: 100%;
+    color: blueviolet;
+    background-color: chartreuse;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px;
+}
+
+#Tec1,#Tec{
+    color: coral;
+    font-size: 13px;
+    align-self: baseline;
+    border-top: 5px;
+    border-color: fuchsia;
+    padding-bottom: 5p;
+}
