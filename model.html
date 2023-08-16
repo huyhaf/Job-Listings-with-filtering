@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Job Listing with Filtering</title>
+        <link href="jobstyle.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <div class="main">
+            <div id="heading">
+                Job Listing with filtering
+            </div>
+
+            <div class="search-clear">
+                <input type="text" id="jobsearch" placeholder="Which job do u want?">
+                <input type="text" id="skillsearch" placeholder="Which skill do u want?">
+            </div>
+
+            <div class="Listing">
+
+                <div id="Job">
+                    Senior FE Dev
+                    <div id="Tec1">FrontEnd</div>
+                    <div id="Tec">HTML</div>
+                    <div id="Tec">CSS</div>
+                    <div id="Tec">JS</div>
+                </div>
+
+                <div id="Job">
+                    Junior FE Dev
+                    <div id="Tec1">FrontEnd</div>
+                    <div id="Tec">HTML</div>
+                    <div id="Tec">JS</div>
+                    <div id="Tec">CSS</div>
+                </div>
+
+                <div id="Job">
+                    Fullstack Dev
+                    <div id="Tec1">Fullstack</div>
+                    <div id="Tec">Python</div>
+                    <div id="Tec">React</div>
+                </div>
+
+                <div id="Job">
+                    Software Engineer
+                    <div id="Tec1">Fullstack</div>
+                    <div id="Tec">Ruby</div>
+                    <div id="Tec">Sass</div>
+                    <div id="Tec">JS</div>
+                </div>
+
+                <div id="Job">
+                    Junior BE Dev
+                    <div id="Tec1">BackEnd</div>
+                    <div id="Tec">Ruby</div>
+                </div>
+
+                <div id="Job">
+                    Senior BE Dev
+                    <div id="Tec1">BackEnd</div>
+                    <div id="Tec">Ruby</div>
+                    <div id="Tec">RoR</div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div id="Noneavailble" style="display: none;">
+            Sorry, the job u're searching isn't availble
+        </div>
+
+        <style>
+            html{
+                color:gold;
+                font-size: 25px;
+            }
+
+            body {
+                background-color: dodgerblue;
+                height: 100%;
+                width: 100%;
+            }
+
+            #heading{
+                font: caption;
+                font-size: 30px;
+                border: 2px solid ;
+                border-radius: 4px;
+                justify-content: center;
+                display: flex;
+                height: 60px;
+                padding-bottom: 20px;
+                margin: 5px;
+            }
+
+            #jobsearch,#skillsearch{
+                height: 20px;
+                width: 75%;
+                border-radius: 5px;
+                margin-left: 5px;
+            }
+
+            #Job{
+                height: auto;
+                width: 100%;
+                color: blueviolet;
+                background-color: rgb(224, 209, 47);
+                border-radius: 5px;
+                padding: 5px;
+                margin: 5px;
+                border: 2px solid black;
+            }
+
+            #Tec1,#Tec{
+                color: rgb(80, 80, 255);
+                font-size: 14px;
+                display: flex;
+                justify-content: left;
+                border: 1px solid rgb(50, 142, 56);
+                border-radius: 2px;
+                padding: 2px ;
+                margin: 2px 20px 2px 10px;
+                margin-right: 20px;
+            }
+
+            #Noneavailble{
+                font-size: 20px;
+                background-color:crimson;
+                height: 40px;
+                width: 100%;
+                border-radius: 10px;
+                align-content: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px;
+                padding: 20px;
+            }
+        </style>
+
+        <script>
+            const typeelement=document.querySelectorAll('#Tec1');
+            const jobselement=document.querySelectorAll('#Job');
+            const nonavail=document.querySelector('#Noneavailble')
+
+            const jobsearch=document.querySelector('#jobsearch');
+            const skillsearch=document.querySelector('#skillsearch');
+
+            let jobresult="",skillresult="";
+            let searched = new Set();   // the variable record the job finded after the job searching
+            var check;
+            function availble(){
+                check=false;
+                for (let i = 0; i < jobselement.length; i++) {
+                    if(jobselement[i].style.display=="block"){
+                        check=true;
+                        return check;
+                    }
+                }
+                return check;
+            }
+
+            jobsearch.addEventListener("keyup",() => {  // filtering the job
+                jobresult=jobsearch.value.trim();
+                jobresult=jobresult.toLowerCase(); // The searching result in lowercase
+                searched.clear();
+
+                for(var i =0 ;i<typeelement.length;i++){
+                    let tmp1=typeelement[i].innerHTML.toLowerCase();
+
+                    if(tmp1.includes(jobresult)){
+                        typeelement[i].parentElement.style.display="block";
+                        searched.add(i);
+                    }
+                    else{
+                        typeelement[i].parentElement.style.display="none";
+                    }
+                }
+                if(!availble()) nonavail.style.display="block";
+                else nonavail.style.display="none";
+            });
+
+            skillsearch.addEventListener("keyup", ()=>{
+                skillresult=skillsearch.value.trim();
+                skillresult=skillresult.toLowerCase(); // The searching result in lowercase
+
+                for(var i=0;i<jobselement.length;i++){
+                    if(searched.has(i)){ // if the tag appears after the job filtering
+                        let len=jobselement[i].children.length;
+                        let check=false;
+
+                        for(var j=1;j<len;j++){
+                            let tmp2=jobselement[i].children[j].innerHTML;
+                            tmp2=tmp2.toLowerCase();
+
+                            if(tmp2.includes(skillresult)){
+                                check=true;
+                                jobselement[i].style.display="block";
+                            }
+                        }
+                        if(!check){
+                            jobselement[i].style.display="none";
+                        }
+                    }
+                }
+                if(!availble()) nonavail.style.display="block";
+                else nonavail.style.display="none";
+            });
+        </script>
+    </body>
+
+</html>
