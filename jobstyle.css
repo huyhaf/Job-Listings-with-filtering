@@ -1,6 +1,8 @@
 html{
     font-size: 25px;
-    background-color: #96B6C5;
+    background-image: url(https://img.freepik.com/premium-vector/line-shape-abstract-background_1406-129.jpg?size=626&ext=jpg&ga=GA1.2.1560993775.1676901109&semt=ais);
+    background-size: 100%;
+    color: rgb(107, 107, 254);
 }
 
 body {
@@ -33,7 +35,7 @@ body {
     height: auto;
     width: auto;
     color: blueviolet;
-    background-color: #F1F0E8;
+    background-color: #f1ecc6;
     border-radius: 5px;
     margin: 5px;
     border: 2px solid black;
@@ -55,7 +57,7 @@ body {
 
 #Noneavailble{
     font-size: 20px;
-    background-color:#FFC6AC;
+    background-color:#f5b497;
     height: 60px;
     width: auto;
     display: flex;
