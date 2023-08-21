@@ -35,7 +35,7 @@ jobsearch.addEventListener("keyup",() => {  // filtering the job
             typeelement[i].parentElement.style.display="none";
         }
     }
-    if(!availble()) nonavail.style.display="block";
+    if(!availble()) nonavail.style.display="FLEX";
     else nonavail.style.display="none";
 });
 
@@ -62,7 +62,7 @@ skillsearch.addEventListener("keyup", ()=>{
             }
         }
     }
-    if(!availble()) nonavail.style.display="block";
+    if(!availble()) nonavail.style.display="FLEX";
     else nonavail.style.display="none";
 });
 
